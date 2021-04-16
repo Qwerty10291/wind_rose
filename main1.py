@@ -174,9 +174,11 @@ class Ui_MainWindow(object):
         row = self.cities[index]
         self.db.add_city(row)
         self.listWidget.clear()
+        self.load_cities()
     
     def load_cities(self):
         self.loaded_cities = self.db.load_cities()
+        self.city_choosing.clear()
         for i in self.loaded_cities:
             self.city_choosing.addItem(i.title)
         if len(self.loaded_cities) > 0:
@@ -184,6 +186,7 @@ class Ui_MainWindow(object):
     
     def load_winds(self):
         city = self.loaded_cities[self.city_choosing.currentIndex()]
+        print(city.title)
         date_to = self.date_from.date()
         date_from = self.date_to.date()
         date_from = datetime(year=date_from.year(), month=date_from.month(), day=date_from.day())

@@ -36,7 +36,7 @@ class Data:
         data = []
         url = city.link
         winds = session.query(Winds).filter(
-            and_(Winds.date >= date_from.strftime('%Y-%m-%d'), Winds.date <= date_to.strftime('%Y-%m-%d'))).all()
+            and_(Winds.date >= date_from.strftime('%Y-%m-%d'), Winds.date <= date_to.strftime('%Y-%m-%d'), Winds.city_id == city.id)).all()
         if len(winds) == 0:
             days = date_to.__sub__(date_from).days
             for i in range(1, days):
